@@ -3,5 +3,9 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "nodemailer": "^6.0.0"
+  },
+  "scripts": {
+    "start": "node index",
+    "test": "echo testing"
   }
 }
