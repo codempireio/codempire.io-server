@@ -1,0 +1,35 @@
+sudo: required
+language: node_js
+node_js:
+  - "9"
+services:
+  - docker
+
+before_install:
+  # install heroku CLI
+  - wget -qO- https://toolbelt.heroku.com/install.sh | sh
+  # login to docker registries (dockerhub + heroku)
+  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+  - echo $HEROKU_API_KEY | docker login -u $HEROKU_USERNAME --password-stdin registry.heroku.com
+
+install:
+  # install deps
+  - yarn
+
+script:
+  # yarn build
+  # build docker images
+  - docker build -t codempire-server .
+  - docker tag codempire-server:latest registry.heroku.com/$HEROKU_APP_NAME/web
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU_API_KEY
+  app: codempire-server
+  script:
+    # push to dockerhub & heroku
+    travis encrypt $(heroku auth:token) --add deploy.api_key
+  on:
+    branch: travis
+
