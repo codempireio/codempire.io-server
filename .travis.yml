@@ -31,5 +31,5 @@ deploy:
     # push to dockerhub & heroku
     travis encrypt $(heroku auth:token) --add deploy.api_key
   on:
-    branch: travis
+    branch: variables
 
