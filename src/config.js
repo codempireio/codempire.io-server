@@ -1,9 +1,9 @@
-const USER_MAIL = "denisworkman3@gmail.com";
+const USER_MAIL = process.env.USER_MAIL;
 const NODEMAILER_CONFIG = {
   service: "gmail",
   auth: {
-    user: USER_MAIL,
-    pass: "Pork45y_ummy"
+    user: process.env.USER_MAIL,
+    pass: process.env.USER_PASS
   }
 };
 const API_PORT = 5000

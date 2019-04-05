@@ -24,7 +24,7 @@ function sendMailController(req, res) {
 }
 
 function healthCheckController(req, res) {
-  res.send(process.env.USER_MAIL);
+  res.send('Server is working');
 }
 
 module.exports = {
